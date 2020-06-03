@@ -1,0 +1,33 @@
+{
+  "name": "moneger",
+  "version": "0.0.1",
+  "description": "the tool to control your incoming and spending resources",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickxgrom/moneger.git"
+  },
+  "keywords": [
+    "money",
+    "monitoring"
+  ],
+  "author": "Nikita Gromyko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickxgrom/moneger/issues"
+  },
+  "homepage": "https://github.com/nickxgrom/moneger#readme",
+  "dependencies": {
+    "atomio-vue": "^0.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "vue-loader": "^15.9.2",
+    "webpack": "^4.43.0"
+  }
+}
