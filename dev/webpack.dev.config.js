@@ -1,5 +1,7 @@
 const path = require('path'),
-    VueLoaderPlugin = require('vue-loader/lib/plugin');
+    VueLoaderPlugin = require('vue-loader/lib/plugin'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    webpack = require('webpack');
 
 module.exports = {
     mode: "development",
@@ -7,16 +9,22 @@ module.exports = {
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, '../dist'),
-        publicPath: "..dist"
+        publicPath: "/"
+    },
+    devServer: {
+        contentBase: './dist',
+        hot: true,
+        port: 3000
     },
     module: {
         rules: [
             {
-                test: /\.js/,
-                loader: 'babel-loader'
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
-                test: /\.vue/,
+                test: /\.vue$/,
                 loader: 'vue-loader'
             },
         ],
@@ -28,5 +36,9 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin,
+        new HtmlWebpackPlugin({
+            template: './src/index.template.html'
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
 }
