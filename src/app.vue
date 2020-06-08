@@ -9,7 +9,7 @@
         name: "app",
         data() {
             return {
-                message: "hello form app./"
+                message: "app has been initialized"
             }
         }
     }

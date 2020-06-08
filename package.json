@@ -4,7 +4,8 @@
   "description": "the tool to control your incoming and spending resources",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config ./dev/webpack.dev.config.js"
+    "dev": "node server/server.js",
+    "start": "start http://localhost:3000/ && npm run dev"
   },
   "repository": {
     "type": "git",

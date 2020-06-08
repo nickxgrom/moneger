@@ -8,3 +8,4 @@ let v = new Vue({
         App
     }
 })
+console.log('dweawedfhghf')
