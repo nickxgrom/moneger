@@ -1,11 +1,13 @@
 import Vue from "vue";
 import App from "./app.vue";
+import router from "./router";
 
-let v = new Vue({
+new Vue({
     el: "#app",
     template: `<app/>`,
+    router,
     components: {
         App
     }
 })
-console.log('dweawedfhghf')
+

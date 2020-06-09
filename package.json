@@ -24,6 +24,7 @@
   "dependencies": {
     "atomio-vue": "^0.3.2",
     "vue": "^2.6.11",
+    "vue-router": "^3.3.2",
     "vue-template-compiler": "^2.6.11"
   },
   "devDependencies": {
