@@ -2,3 +2,6 @@
 /.idea
 /dist
 WARNING.txt
+src/router/routes/test.js
+src/components/shared/app-header.vue
+src/components/shared/app-header.vue

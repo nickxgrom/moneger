@@ -1,15 +1,20 @@
 <template>
-    <div id="app">
+    <v-app id="app">
         <router-view></router-view>
-    </div>
+    </v-app>
 </template>
 
 <script>
     export default {
         name: "app",
+        components: {
+        }
     }
 </script>
 
-<style scoped>
-
+<style>
+    .page {
+        width: 100%;
+        height: 100%;
+    }
 </style>

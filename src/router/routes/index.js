@@ -3,7 +3,7 @@ import NotFound from "./not-found"
 
 const routes = [
     Home,
-    NotFound
+    NotFound,
 ]
 
 export default routes
