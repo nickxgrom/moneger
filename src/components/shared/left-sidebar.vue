@@ -123,6 +123,10 @@
         height: 100%;
     }
 
+    .user {
+        margin-top: 30px;
+    }
+
     .balance-amount {
         width: 90%;
         margin: 10px auto;
@@ -149,7 +153,7 @@
     }
 
     .workspace-title {
-        background-color:#8C8BF0;
+        background-color: #8C8BF0;
         padding: 5px;
         border-radius: 10px;
     }
