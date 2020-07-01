@@ -51,8 +51,27 @@
                         </v-card>
                     </v-col>
                     <v-col>
-                        <v-card class="card">
-                            <v-card-title class="pa-0 mb-4">Categories</v-card-title>
+                        <v-card class="card categories">
+                            <v-card-title class="pa-0 mb-4 flex">
+                                Categories
+                                <v-btn small color="primary">Show more</v-btn>
+                            </v-card-title>
+
+                            <ul>
+                                <li
+                                    v-for="item in categories"
+                                >
+                                    <div>
+                                        <div class="flex">
+                                            <span>{{item.name}}</span>
+                                            <span>{{item.value}}$</span>
+                                        </div>
+                                        <v-progress-linear
+                                            :value="item.value*100/thisMonthSpent"
+                                        ></v-progress-linear>
+                                    </div>
+                                </li>
+                            </ul>
                         </v-card>
                     </v-col>
                 </v-row>
@@ -77,6 +96,26 @@
         components: {
             LeftSidebar,
         },
+        data(){
+            return {
+                thisMonthSpent: 900,
+                categories: [
+                    {
+                        name: "Health",
+                        value: 200
+                    },
+                    {
+                        name: "Products",
+                        value: 450
+                    },
+                    {
+                        name: "Shopping",
+                        value: 250
+                    },
+
+                ]
+            }
+        }
     }
 </script>
 
@@ -85,6 +124,7 @@
         display: flex;
         margin: 0;
         padding: 0;
+
     }
 
     .outlined {
@@ -93,20 +133,20 @@
 
     .flex {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-content: baseline;
     }
 
     .card {
         min-width: 250px;
-        min-height: 200px;
+        height: 200px;
         padding: 12px;
     }
 
     .total-spent-info {
         background-color: #EBF1FF;
         border-radius: 20px;
-        width: 45%;
+        width: 50%;
     }
 
     .card ul {
@@ -118,5 +158,9 @@
         padding: 10px 0;
         width: max-content;
         margin: auto;
+    }
+
+    .categories li {
+        margin: 0 0 12px;
     }
 </style>
