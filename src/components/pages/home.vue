@@ -1,113 +1,87 @@
 <template>
-    <div class="page">
-        <v-row  class="ma-0">
-            <v-col
-                class="pa-0 outlined"
-                cols="3"
-            >
-               <left-sidebar></left-sidebar>
-            </v-col>
-
-            <v-col
-                class="outlined"
-                cols="6"
-            >
-                <v-row>
-                    <v-col>
-                        <v-card class="card credit-limit">
-                            <v-card-title class="pa-0 mb-4">Credit limit</v-card-title>
-                            <div class="flex">
-                                <v-progress-circular
-                                    size="120"
-                                    rotate="270"
-                                    value="13"
-                                    color="#8C8BF0"
-                                >
-                                    <div class="text-center">
-                                        <v-card-text class="pb-0 headline">123$</v-card-text>
-                                        <v-card-subtitle class="pt-0">of 1000$ limit</v-card-subtitle>
-                                    </div>
-                                </v-progress-circular>
-
-                                <div class="total-spent-info">
-                                    <ul>
-                                        <li>
-                                            <v-card-title class="pa-0 pb-4">
-                                                <v-icon small color="#68993F">mdi-circle</v-icon>
-                                                6,345$
-                                            </v-card-title>
-                                            <v-card-subtitle class="pb-0 px-0">Total</v-card-subtitle>
-                                        </li>
-                                        <li>
-                                            <v-card-title class="pa-0 pb-4">
-                                                <v-icon small color="#D96B55">mdi-circle</v-icon>
-                                                5,345$
-                                            </v-card-title>
-                                            <v-card-subtitle class="pb-0 px-0">Spent</v-card-subtitle>
-                                        </li>
-                                    </ul>
-                                </div>
+    <div>
+        <v-row>
+            <v-col>
+                <v-card class="card credit-limit">
+                    <v-card-title class="pa-0 mb-4">Credit limit</v-card-title>
+                    <div class="flex">
+                        <v-progress-circular
+                            size="120"
+                            rotate="270"
+                            value="13"
+                            color="#8C8BF0"
+                        >
+                            <div class="text-center">
+                                <v-card-text class="pb-0 headline">123$</v-card-text>
+                                <v-card-subtitle class="pt-0">of 1000$ limit</v-card-subtitle>
                             </div>
-                        </v-card>
-                    </v-col>
-                    <v-col>
-                        <v-card class="card categories">
-                            <v-card-title class="pa-0 mb-4 flex">
-                                Categories
-                                <v-btn small color="primary">Show more</v-btn>
-                            </v-card-title>
+                        </v-progress-circular>
 
+                        <div class="total-spent-info">
                             <ul>
-                                <li
-                                        v-for="item in categories"
-                                >
-                                    <div>
-                                        <div class="flex">
-                                            <span>{{item.name}}</span>
-                                            <span>{{item.value}}$</span>
-                                        </div>
-                                        <v-progress-linear
-                                                :value="item.value*100/thisMonthSpent"
-                                        ></v-progress-linear>
-                                    </div>
+                                <li>
+                                    <v-card-title class="pa-0 pb-4">
+                                        <v-icon small color="#68993F">mdi-circle</v-icon>
+                                        6,345$
+                                    </v-card-title>
+                                    <v-card-subtitle class="pb-0 px-0">Total</v-card-subtitle>
+                                </li>
+                                <li>
+                                    <v-card-title class="pa-0 pb-4">
+                                        <v-icon small color="#D96B55">mdi-circle</v-icon>
+                                        5,345$
+                                    </v-card-title>
+                                    <v-card-subtitle class="pb-0 px-0">Spent</v-card-subtitle>
                                 </li>
                             </ul>
-                        </v-card>
-                    </v-col>
-                </v-row>
-
-
-                <v-card  class="general" flat>
-                    <v-card-title>All workspaces</v-card-title>
-
-                    <div class="flex">
-
-                        <v-card
-                            v-for="item in totalBudget"
-                            class="general-card text-center"
-                            :color="item.color"
-                            :key="item.name"
-                        >
-                            <v-card-title>{{item.name}}</v-card-title>
-                            <span class="text-h5">
-                                {{item.value}}$
-                            </span>
-                        </v-card>
+                        </div>
                     </div>
                 </v-card>
-                <v-card>
+            </v-col>
+            <v-col>
+                <v-card class="card categories">
+                    <v-card-title class="pa-0 mb-4 flex">
+                        Categories
+                        <v-btn small color="primary">Show more</v-btn>
+                    </v-card-title>
 
+                    <ul>
+                        <li
+                                v-for="item in categories"
+                        >
+                            <div>
+                                <div class="flex">
+                                    <span>{{item.name}}</span>
+                                    <span>{{item.value}}$</span>
+                                </div>
+                                <v-progress-linear
+                                        :value="item.value*100/thisMonthSpent"
+                                ></v-progress-linear>
+                            </div>
+                        </li>
+                    </ul>
                 </v-card>
             </v-col>
-
-
-            <v-col
-                class="pa-0 outlined"
-                cols="3"
-            >
-                    right side bar
-            </v-col>
         </v-row>
+
+
+        <v-card  class="general" flat>
+            <v-card-title>All workspaces</v-card-title>
+
+            <div class="flex">
+                <v-card
+                    v-for="item in totalBudget"
+                    class="general-card text-center"
+                    :color="item.color"
+                    :key="item.name"
+                >
+                    <v-card-title>{{item.name}}</v-card-title>
+                    <span class="text-h5">
+                        {{item.value}}$
+                    </span>
+                </v-card>
+            </div>
+        </v-card>
     </div>
 </template>
 
@@ -158,17 +132,6 @@
 </script>
 
 <style scoped>
-    .page {
-        display: flex;
-        margin: 0;
-        padding: 0;
-
-    }
-
-    .outlined {
-        border: 1px solid black;
-    }
-
     .flex {
         display: flex;
         justify-content: space-between;

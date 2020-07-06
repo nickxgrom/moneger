@@ -1,5 +1,4 @@
 <template>
-
     <div class="main">
         <v-card class="user" flat>
             <div class="text-center">
