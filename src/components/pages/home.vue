@@ -64,6 +64,9 @@
             </v-col>
         </v-row>
 
+        <div class="ma-4">
+            <donut-chart></donut-chart>
+        </div>
 
         <v-card  class="general" flat>
             <v-card-title>All workspaces</v-card-title>
@@ -86,11 +89,12 @@
 </template>
 
 <script>
-    import LeftSidebar from '../shared/left-sidebar.vue'
+    import DonutChart from '../shared/donut-chart.vue'
+
     export default {
         name: "home",
         components: {
-            LeftSidebar,
+            DonutChart
         },
         data(){
             return {
