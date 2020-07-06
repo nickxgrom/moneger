@@ -59,7 +59,7 @@
 
                             <ul>
                                 <li
-                                    v-for="item in categories"
+                                        v-for="item in categories"
                                 >
                                     <div>
                                         <div class="flex">
@@ -67,7 +67,7 @@
                                             <span>{{item.value}}$</span>
                                         </div>
                                         <v-progress-linear
-                                            :value="item.value*100/thisMonthSpent"
+                                                :value="item.value*100/thisMonthSpent"
                                         ></v-progress-linear>
                                     </div>
                                 </li>
@@ -76,7 +76,30 @@
                     </v-col>
                 </v-row>
 
+
+                <v-card  class="general" flat>
+                    <v-card-title>All workspaces</v-card-title>
+
+                    <div class="flex">
+
+                        <v-card
+                            v-for="item in totalBudget"
+                            class="general-card text-center"
+                            :color="item.color"
+                            :key="item.name"
+                        >
+                            <v-card-title>{{item.name}}</v-card-title>
+                            <span class="text-h5">
+                                {{item.value}}$
+                            </span>
+                        </v-card>
+                    </div>
+                </v-card>
+                <v-card>
+
+                </v-card>
             </v-col>
+
 
             <v-col
                 class="pa-0 outlined"
@@ -85,7 +108,6 @@
                     right side bar
             </v-col>
         </v-row>
-
     </div>
 </template>
 
@@ -112,7 +134,23 @@
                         name: "Shopping",
                         value: 250
                     },
-
+                ],
+                totalBudget: [
+                    {
+                        name: "Budget",
+                        value: "990,890",
+                        color: "#EBF1FF"
+                    },
+                    {
+                        name: "Income",
+                        value: "123,934",
+                        color: "#BBD6A1"
+                    },
+                    {
+                        name: "Outcome",
+                        value: "12,312",
+                        color: "#FFE5DA"
+                    }
                 ]
             }
         }
@@ -162,5 +200,10 @@
 
     .categories li {
         margin: 0 0 12px;
+    }
+
+    .general-card {
+        width: 30%;
+        height: 120px;
     }
 </style>
