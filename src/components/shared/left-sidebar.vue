@@ -42,30 +42,28 @@
         <v-card class="workspaces" flat>
             <v-card-title>Workspaces</v-card-title>
             <v-card
-                v-for="item in workspace"
+                v-for="workspace in workspaces"
                 color="#EBF1FF"
                 class="workspace-card"
-                :key="item.name"
-                @click="changeWorkspace(item)"
+                :key="workspace.name"
+                @click="changeWorkspace(workspace)"
             >
                 <div class="card-subtitle">
                     <v-card-subtitle class="workspace-title" style="color: #EBF1FF">
-                        {{item.name}}
+                        {{workspace.name}}
                     </v-card-subtitle>
                     <v-chip
-                        v-if="item.isCurrent"
                         color="#C6D5F5"
+                        v-if="workspace == currentWorkspace"
                     >
                         Current
                     </v-chip>
                 </div>
-
                 <div class="mt-4">
                     <span class="text-h5 grey--text">$</span>
-                    <span class="text-h5">{{item.balance}}</span>
+                    <span class="text-h5">{{workspace.balance}}</span>
                 </div>
             </v-card>
-
        </v-card>
     </div>
 </template>
@@ -73,43 +71,18 @@
 <script>
     export default {
         name: "left-sidebar",
-        data() {
-            return {
-                workspace: [
-                    {
-                        name: "Workspace#1",
-                        balance: "990,890",
-                        percents: 4.2,
-                        isCurrent: true
-                    },
-                    {
-                        name: "Workspace#2",
-                        balance: "0.15",
-                        percents: -3.4,
-                        isCurrent: false
-                    },
-                    {
-                        name: "Workspace#3",
-                        balance: "100",
-                        percents: 100,
-                        isCurrent: false
-                    },
-
-                ],
-                currentWorkspace: {},
-            }
-        },
         methods: {
             changeWorkspace(item) {
-                this.currentWorkspace = item
-                this.workspace.forEach(item => {
-                    item.isCurrent = false
-                })
-                item.isCurrent = true
+                this.$store.commit('changeWorkspace', item)
             }
         },
-        mounted() {
-            this.currentWorkspace = this.workspace[0]
+        computed: {
+            workspaces() {
+                return this.$store.state.modules.workspaces
+            },
+            currentWorkspace() {
+                return this.$store.getters.currentWorkspace
+            }
         }
     }
 </script>

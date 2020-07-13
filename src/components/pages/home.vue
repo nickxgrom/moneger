@@ -12,8 +12,12 @@
                             color="#8C8BF0"
                         >
                             <div class="text-center">
-                                <v-card-text class="pb-0 headline">123$</v-card-text>
-                                <v-card-subtitle class="pt-0">of 1000$ limit</v-card-subtitle>
+                                <v-card-text class="pb-0 headline">
+                                    {{workspace.spentThisMonth}}$
+                                </v-card-text>
+                                <v-card-subtitle class="pt-0">
+                                    of {{workspace.monthLimit}}$ limit
+                                </v-card-subtitle>
                             </div>
                         </v-progress-circular>
 
@@ -47,15 +51,15 @@
 
                     <ul>
                         <li
-                                v-for="item in categories"
+                                v-for="category in categories"
                         >
                             <div>
                                 <div class="flex">
-                                    <span>{{item.name}}</span>
-                                    <span>{{item.value}}$</span>
+                                    <span>{{category.name}}</span>
+                                    <span>{{category.value}}$</span>
                                 </div>
                                 <v-progress-linear
-                                        :value="item.value*100/thisMonthSpent"
+                                        :value="category.value*100/workspace.spentThisMonth"
                                 ></v-progress-linear>
                             </div>
                         </li>
@@ -98,21 +102,6 @@
         },
         data(){
             return {
-                thisMonthSpent: 900,
-                categories: [
-                    {
-                        name: "Health",
-                        value: 200
-                    },
-                    {
-                        name: "Products",
-                        value: 450
-                    },
-                    {
-                        name: "Shopping",
-                        value: 250
-                    },
-                ],
                 totalBudget: [
                     {
                         name: "Budget",
@@ -131,6 +120,14 @@
                     }
                 ]
             }
+        },
+        computed: {
+            workspace() {
+                return this.$store.getters.currentWorkspace
+            },
+            categories() {
+                return this.workspace.categories
+            },
         }
     }
 </script>
