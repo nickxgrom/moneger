@@ -21,7 +21,6 @@
             >
                 right side bar
             </v-col>
-
         </v-row>
     </v-app>
 </template>
