@@ -71,10 +71,6 @@
 <script>
     export default {
         name: "left-sidebar",
-        data() {
-            return {
-            }
-        },
         methods: {
             changeWorkspace(item) {
                 this.$store.commit('changeWorkspace', item)
@@ -85,7 +81,7 @@
                 return this.$store.state.modules.workspaces
             },
             currentWorkspace() {
-                return this.$store.state.modules.currentWorkspace
+                return this.$store.getters.currentWorkspace
             }
         }
     }
