@@ -10,16 +10,19 @@ const module = {
                 spentThisMonth: 600,
                 categories: [
                     {
-                        name: "h1",
+                        label: "h1",
                         value: 200,
+                        color: '#FF6384'
                     },
                     {
-                        name: "p1",
+                        label: "p1",
                         value: 200,
+                        color: '#36A2EB'
                     },
                     {
-                        name: "s1",
+                        label: "s1",
                         value: 200,
+                        color: '#FFCE56'
                     },
                 ]
             },
@@ -31,16 +34,19 @@ const module = {
                 spentThisMonth: 4320,
                 categories: [
                     {
-                        name: "h2",
-                        value: 20,
+                        label: "h2",
+                        value: 200,
+                        color: '#FF6384'
                     },
                     {
-                        name: "p2",
+                        label: "p2",
                         value: 2200,
+                        color: '#36A2EB'
                     },
                     {
-                        name: "s2",
+                        label: "s2",
                         value: 2100,
+                        color: '#FFCE56'
                     },
                 ]
             },

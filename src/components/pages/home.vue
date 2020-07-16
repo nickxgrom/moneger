@@ -69,7 +69,7 @@
         </v-row>
 
         <div class="ma-4">
-            <donut-chart></donut-chart>
+            <donut-chart :categories="workspace.categories"></donut-chart>
         </div>
 
         <v-card  class="general" flat>
