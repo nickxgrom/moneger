@@ -3,12 +3,14 @@
         <v-row>
             <v-col>
                 <v-card class="card credit-limit">
-                    <v-card-title class="pa-0 mb-4">Credit limit</v-card-title>
+                    <v-card-title class="pa-0 mb-4 ">
+                        This month
+                    </v-card-title>
                     <div class="flex">
                         <v-progress-circular
                             size="120"
                             rotate="270"
-                            value="13"
+                            :value="spentThisMonth*100/limit"
                             color="#8C8BF0"
                         >
                             <div class="text-center">
@@ -28,14 +30,14 @@
                                         <v-icon small color="#68993F">mdi-circle</v-icon>
                                         6,345$
                                     </v-card-title>
-                                    <v-card-subtitle class="pb-0 px-0">Total</v-card-subtitle>
+                                    <v-card-subtitle class="pb-0 px-0">Incoming</v-card-subtitle>
                                 </li>
                                 <li>
                                     <v-card-title class="pa-0 pb-4">
                                         <v-icon small color="#D96B55">mdi-circle</v-icon>
-                                        5,345$
+                                        3,123$
                                     </v-card-title>
-                                    <v-card-subtitle class="pb-0 px-0">Spent</v-card-subtitle>
+                                    <v-card-subtitle class="pb-0 px-0">Outgoing</v-card-subtitle>
                                 </li>
                             </ul>
                         </div>
@@ -44,32 +46,38 @@
             </v-col>
             <v-col>
                 <v-card class="card categories">
-                    <v-card-title class="pa-0 mb-4 flex">
-                        Categories
-                        <v-btn small color="primary">Show more</v-btn>
-                    </v-card-title>
-
-                    <ul>
-                        <li
-                                v-for="category in categories"
-                        >
-                            <div>
-                                <div class="flex">
-                                    <span>{{category.name}}</span>
-                                    <span>{{category.value}}$</span>
-                                </div>
-                                <v-progress-linear
-                                        :value="category.value*100/workspace.spentThisMonth"
-                                ></v-progress-linear>
-                            </div>
-                        </li>
-                    </ul>
+                    <v-card-title class="pa-0 pb-4">Current Workspace</v-card-title>
+                    <div class="flex">
+                        <v-card class="tile">
+                            <v-card-subtitle class="pa-0">Total income</v-card-subtitle>
+                            <span class="text-h5">321,324$</span>
+                        </v-card>
+                        <v-card class="tile">
+                            <v-card-subtitle class="pa-0">Total spent</v-card-subtitle>
+                            <span class="text-h5">1,324$</span>
+                        </v-card>
+                    </div>
+                    <div class="flex">
+                        <v-card class="tile">
+                            <v-card-subtitle class="pa-0">Transactions amount</v-card-subtitle>
+                            <span class="text-h5">732</span>
+                        </v-card>
+                        <v-card class="tile">
+                            <v-card-subtitle class="pa-0">Most popular category</v-card-subtitle>
+                            <span class="text-h5">Products</span>
+                        </v-card>
+                    </div>
                 </v-card>
             </v-col>
         </v-row>
 
-        <div class="ma-4">
+        <div class="ma-4 text-center">
             <donut-chart :categories="workspace.categories"></donut-chart>
+            <v-btn
+                color="primary"
+            >
+                Show more
+            </v-btn>
         </div>
 
         <v-card  class="general" flat>
@@ -128,6 +136,12 @@
             categories() {
                 return this.workspace.categories
             },
+            limit() {
+                return this.$store.getters.currentWorkspace.monthLimit
+            },
+            spentThisMonth() {
+                return this.$store.getters.currentWorkspace.spentThisMonth
+            }
         }
     }
 </script>
@@ -169,5 +183,11 @@
     .general-card {
         width: 30%;
         height: 120px;
+    }
+
+    .tile {
+        width: 49%;
+        margin: 0 0 5px 0;
+        padding: 5px 0 5px 10px;
     }
 </style>
