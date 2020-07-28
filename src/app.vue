@@ -19,7 +19,7 @@
                     class="pa-0 outlined"
                     cols="3"
             >
-                right side bar
+                <right-sidebar></right-sidebar>
             </v-col>
         </v-row>
     </v-app>
@@ -27,10 +27,12 @@
 
 <script>
     import LeftSidebar from './components/shared/left-sidebar.vue'
+    import RightSidebar from './components/shared/right-sidebar.vue'
     export default {
         name: "app",
         components: {
             LeftSidebar,
+            RightSidebar,
         }
     }
 </script>
