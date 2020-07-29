@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <h3>Transactions</h3>
+        <h3>Last transactions</h3>
         <ul>
             <li
                 v-for="item in transactions"
@@ -39,35 +39,17 @@
         name: "right-sidebar",
         data() {
             return {
-                transactions: [
-                    {
-                        title: 'Shop',
-                        date: new Date(),
-                        value: '100',
-                        category: "Products",
-                    },
-                    {
-                        title: 'Shop',
-                        date: new Date(),
-                        value: '30',
-                        category: "Shopping",
-                    },
-                    {
-                        title: 'Workout team',
-                        date: new Date(),
-                        value: '200',
-                        category: "Sport",
-                    },
 
-                ]
             }
         },
         methods: {
             test(item) {
                 console.log(item.title)
             },
-            dateToStr(ms) {
-                return ms.getFullYear()
+        },
+        computed: {
+            transactions() {
+                return this.$store.getters.currentWorkspace.transactions
             }
         }
     }
@@ -81,7 +63,6 @@
 
     .main {
         padding: 20px;
-        /*background-color: ;*/
     }
 
     .main ul {

@@ -24,6 +24,27 @@ const module = {
                         value: 200,
                         color: '#FFCE56'
                     },
+                ],
+                transactions: [
+                    {
+                        title: 'Shop',
+                        date: new Date(),
+                        value: '100',
+                        category: "Products",
+                    },
+                    {
+                        title: 'Shop',
+                        date: new Date(),
+                        value: '30',
+                        category: "Shopping",
+                    },
+                    {
+                        title: 'Workout team',
+                        date: new Date(),
+                        value: '200',
+                        category: "Sport",
+                    },
+
                 ]
             },
             {
@@ -48,6 +69,33 @@ const module = {
                         value: 2100,
                         color: '#FFCE56'
                     },
+                ],
+                transactions: [
+                    {
+                        title: 'Coffee',
+                        date: new Date(),
+                        value: '20',
+                        category: "Products",
+                    },
+                    {
+                        title: 'Service',
+                        date: new Date(),
+                        value: '200',
+                        category: "Other",
+                    },
+                    {
+                        title: 'Rent',
+                        date: new Date(),
+                        value: '400',
+                        category: "Other",
+                    },
+                    {
+                        title: 'Toothbrush',
+                        date: new Date(),
+                        value: '20',
+                        category: "Health",
+                    },
+
                 ]
             },
         ]
