@@ -103,10 +103,9 @@ const module = {
         changeWorkspace(state, item) {
             state.currentWorkspace = item
         },
-        addIncome(state, item) {
+        addTransaction(state, item) {
             this.getters.currentWorkspace.transactions.push(item)
-            console.log(item)
-        }
+        },
     },
     getters: {
         currentWorkspace(state) {

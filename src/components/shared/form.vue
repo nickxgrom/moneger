@@ -1,5 +1,5 @@
 <template>
-    <v-overlay :value="visible">
+    <v-overlay>
 <!--        <v-btn-->
 <!--            icon-->
 <!--            @click="visible = false"-->
@@ -15,16 +15,19 @@
             </span>
 
             <v-select
+                v-if="type=='transactions'"
+                v-model="transactionCategory"
+                :items="categories"
+                no-data-text="no data"
                 placeholder="Category"
                 outlined
                 light
                 filled
-                no-data-text="You have no any category"
-                :items="categories"
             >
             </v-select>
 
             <atomio-text-input
+                v-model="transactionName"
                 placeholder="Name of transaction"
             >
             </atomio-text-input>
@@ -32,16 +35,18 @@
             <v-row>
                 <v-col cols="7">
                     <atomio-text-input
-                        placeholder="value"
+                        v-model="transactionValue"
                     ></atomio-text-input>
                 </v-col>
                 <v-col>
-                    <atomio-date-time-select></atomio-date-time-select>
+                    <atomio-date-time-select
+                        v-model="transactionDate"
+                    ></atomio-date-time-select>
                 </v-col>
             </v-row>
 
             <atomio-button
-                @click="act({title: 'Test', date: new Date(), value: 148, category: 'GHFDF'})"
+                @click="formSubmit"
             >
                 enter
             </atomio-button>
@@ -60,15 +65,28 @@ export default {
     name: "a-form",
      data() {
         return {
-            overlay: true,
+            transactionName: "",
+            transactionCategory: "",
+            transactionValue: "",
+            transactionDate: new Date(),
         }
      },
     props: {
-        visible: Boolean,
+        type: String,
         title: String,
         categories: Array,
         act: Function,
     },
+    methods: {
+        formSubmit() {
+            this.$props.act({
+                title: this.transactionName,
+                category: this.transactionCategory,
+                value: this.transactionValue,
+                date: this.transactionDate
+            })
+        }
+    }
 }
 </script>
 

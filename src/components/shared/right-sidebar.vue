@@ -18,7 +18,7 @@
                             </span>
                             <div class="transaction-card-info">
                                 <span class="mr-2">
-                                    {{item.date.getDate() + '/' + (item.date.getMonth()+1)}}
+                                    {{`${item.date.getDate()}/${item.date.getMonth()+1}`}}
                                 </span>
                                     <span>{{item.category}}</span>
                             </div>
@@ -47,7 +47,7 @@
                 // return this.$store.getters.currentWorkspace.transactions.slice(0, 5)
                 return this.$store.getters.currentWorkspace.transactions
             }
-        }
+        },
     }
 </script>
 

@@ -71,15 +71,6 @@
                             >
                                 Add income
                             </v-btn>
-                            <a-form
-                                :visible="formVisible"
-                                title="Inc"
-                                :categories="['wertf', 'wert']"
-                                :act="text => { this.$store.commit('addIncome', text) }"
-                                @closeForm="formVisible=!formVisible"
-
-                            >
-                            </a-form>
                             <v-btn
                                 small block
                                 color="error"
@@ -119,6 +110,15 @@
                 </v-card>
             </div>
         </v-card>
+        <a-form
+            v-if="formVisible"
+            type="transactions"
+            title="Add replenishment"
+            :categories="['Sport', 'Health']"
+            :act="item => { this.$store.commit('addTransaction', item) }"
+            @closeForm="formVisible=!formVisible"
+        >
+        </a-form>
     </div>
 </template>
 
