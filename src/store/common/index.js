@@ -28,18 +28,21 @@ const module = {
                 transactions: [
                     {
                         title: 'Shop',
+                        type: "replenishment",
                         date: new Date(),
                         value: '100',
                         category: "Products",
                     },
                     {
                         title: 'Shop',
+                        type: "replenishment",
                         date: new Date(),
                         value: '30',
                         category: "Shopping",
                     },
                     {
                         title: 'Workout team',
+                        type: "replenishment",
                         date: new Date(),
                         value: '200',
                         category: "Sport",
@@ -73,24 +76,28 @@ const module = {
                 transactions: [
                     {
                         title: 'Coffee',
+                        type: "replenishment",
                         date: new Date(),
                         value: '20',
                         category: "Products",
                     },
                     {
                         title: 'Service',
+                        type: "replenishment",
                         date: new Date(),
                         value: '200',
                         category: "Other",
                     },
                     {
                         title: 'Rent',
+                        type: "replenishment",
                         date: new Date(),
                         value: '400',
                         category: "Other",
                     },
                     {
                         title: 'Toothbrush',
+                        type: "replenishment",
                         date: new Date(),
                         value: '20',
                         category: "Health",

@@ -5,9 +5,10 @@
 <!--        TODO change key of elements-->
             <li
                 v-for="item in transactions"
-                :key="item.value"
             >
-                <div class="transaction-card flex">
+                <div
+                    class="transaction-card flex"
+                    :style="`border: 1px solid ${item.type == 'replenishment' ? '#00FF00' : '#FF0000'}`">
                     <div style="display: flex">
                         <div class="icon">
                             <v-icon medium>mdi-cart-outline</v-icon>
@@ -37,11 +38,6 @@
 <script>
     export default {
         name: "right-sidebar",
-        data() {
-            return {
-
-            }
-        },
         computed: {
             transactions() {
                 // return this.$store.getters.currentWorkspace.transactions.slice(0, 5)
@@ -69,7 +65,6 @@
     .transaction-card {
         padding: 16px;
         border-radius: 10px;
-        border: 1px solid #2abf2a;
         margin-bottom: 10px;
     }
 

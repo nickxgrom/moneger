@@ -64,14 +64,15 @@
                         </v-card>
                         <div class="tile">
                             <v-btn
+                                @click="addReplenishmentFormVisible=true"
                                 small block
                                 color="success"
                                 class="mb-3"
-                                @click="formVisible=true"
                             >
                                 Add income
                             </v-btn>
                             <v-btn
+                                @click="addExpenseFormVisible=true"
                                 small block
                                 color="error"
                                 class="px-0"
@@ -111,12 +112,21 @@
             </div>
         </v-card>
         <a-form
-            v-if="formVisible"
-            type="transactions"
+            v-if="addReplenishmentFormVisible"
+            type="replenishment"
             title="Add replenishment"
             :categories="['Sport', 'Health']"
             :act="item => { this.$store.commit('addTransaction', item) }"
-            @closeForm="formVisible=!formVisible"
+            @closeForm="addReplenishmentFormVisible=false"
+        >
+        </a-form>
+        <a-form
+            v-if="addExpenseFormVisible"
+            type="expense"
+            title="Add expense"
+            :categories="['Sport', 'Health']"
+            :act="item => { this.$store.commit('addTransaction', item) }"
+            @closeForm="addExpenseFormVisible=false"
         >
         </a-form>
     </div>
@@ -134,7 +144,8 @@
         },
         data(){
             return {
-                formVisible: false,
+                addReplenishmentFormVisible: false,
+                addExpenseFormVisible: false,
                 totalBudget: [
                     {
                         name: "Budget",

@@ -1,11 +1,5 @@
 <template>
     <v-overlay>
-<!--        <v-btn-->
-<!--            icon-->
-<!--            @click="visible = false"-->
-<!--        >-->
-<!--            <v-icon>mdi-close</v-icon>-->
-<!--        </v-btn>-->
         <atomio-form
             class="a-form"
             :show-errors="true"
@@ -15,7 +9,7 @@
             </span>
 
             <v-select
-                v-if="type=='transactions'"
+                v-if="type=='transactions' || 'expense'"
                 v-model="transactionCategory"
                 :items="categories"
                 no-data-text="no data"
@@ -81,10 +75,12 @@ export default {
         formSubmit() {
             this.$props.act({
                 title: this.transactionName,
+                type: this.$props.type,
                 category: this.transactionCategory,
                 value: this.transactionValue,
                 date: this.transactionDate
             })
+            this.$emit('closeForm')
         }
     }
 }
