@@ -2,12 +2,12 @@
     <div class="main">
         <h3>Last transactions</h3>
         <ul>
+<!--        TODO change key of elements-->
             <li
                 v-for="item in transactions"
                 :key="item.value"
             >
-
-                <div class="transaction-card flex" @click="test(item)">
+                <div class="transaction-card flex">
                     <div style="display: flex">
                         <div class="icon">
                             <v-icon medium>mdi-cart-outline</v-icon>
@@ -42,13 +42,9 @@
 
             }
         },
-        methods: {
-            test(item) {
-                console.log(item.title)
-            },
-        },
         computed: {
             transactions() {
+                // return this.$store.getters.currentWorkspace.transactions.slice(0, 5)
                 return this.$store.getters.currentWorkspace.transactions
             }
         }

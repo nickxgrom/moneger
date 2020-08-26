@@ -62,10 +62,32 @@
                             <v-card-subtitle class="pa-0">Transactions amount</v-card-subtitle>
                             <span class="text-h5">732</span>
                         </v-card>
-                        <v-card class="tile">
-                            <v-card-subtitle class="pa-0">Most popular category</v-card-subtitle>
-                            <span class="text-h5">Products</span>
-                        </v-card>
+                        <div class="tile">
+                            <v-btn
+                                small block
+                                color="success"
+                                class="mb-3"
+                                @click="formVisible=true"
+                            >
+                                Add income
+                            </v-btn>
+                            <a-form
+                                :visible="formVisible"
+                                title="Inc"
+                                :categories="['wertf', 'wert']"
+                                :act="text => { this.$store.commit('addIncome', text) }"
+                                @closeForm="formVisible=!formVisible"
+
+                            >
+                            </a-form>
+                            <v-btn
+                                small block
+                                color="error"
+                                class="px-0"
+                            >
+                                Add expense
+                            </v-btn>
+                        </div>
                     </div>
                 </v-card>
             </v-col>
@@ -102,14 +124,17 @@
 
 <script>
     import DonutChart from '../shared/donut-chart.vue'
+    import AForm from '../shared/form.vue'
 
     export default {
         name: "home",
         components: {
-            DonutChart
+            DonutChart,
+            AForm,
         },
         data(){
             return {
+                formVisible: false,
                 totalBudget: [
                     {
                         name: "Budget",
@@ -142,7 +167,7 @@
             spentThisMonth() {
                 return this.$store.getters.currentWorkspace.spentThisMonth
             }
-        }
+        },
     }
 </script>
 
@@ -188,6 +213,6 @@
     .tile {
         width: 49%;
         margin: 0 0 5px 0;
-        padding: 5px 0 5px 10px;
+        padding: 5px 10px;
     }
 </style>

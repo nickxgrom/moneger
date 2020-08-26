@@ -95,7 +95,6 @@ const module = {
                         value: '20',
                         category: "Health",
                     },
-
                 ]
             },
         ]
@@ -103,6 +102,10 @@ const module = {
     mutations: {
         changeWorkspace(state, item) {
             state.currentWorkspace = item
+        },
+        addIncome(state, item) {
+            this.getters.currentWorkspace.transactions.push(item)
+            console.log(item)
         }
     },
     getters: {
