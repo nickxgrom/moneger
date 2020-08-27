@@ -41,30 +41,34 @@
         </v-card>
         <v-card class="workspaces" flat>
             <v-card-title>Workspaces</v-card-title>
-            <v-card
-                v-for="workspace in workspaces"
-                color="#EBF1FF"
-                class="workspace-card"
-                :key="workspace.name"
-                @click="changeWorkspace(workspace)"
-            >
-                <div class="card-subtitle">
-                    <v-card-subtitle class="workspace-title" style="color: #EBF1FF">
-                        {{workspace.name}}
-                    </v-card-subtitle>
-                    <v-chip
-                        color="#C6D5F5"
-                        v-if="workspace == currentWorkspace"
-                    >
-                        Current
-                    </v-chip>
-                </div>
-                <div class="mt-4">
-                    <span class="text-h5 grey--text">$</span>
-                    <span class="text-h5">{{workspace.balance}}</span>
-                </div>
-            </v-card>
-       </v-card>
+            <div class="workspaces-card-list">
+                <v-card
+                    v-for="workspace in workspaces"
+                    color="#EBF1FF"
+                    class="workspace-card"
+                    :key="workspace.name"
+                    @click="changeWorkspace(workspace)"
+                >
+                    <div class="card-subtitle">
+                        <v-card-subtitle class="workspace-title" style="color: #EBF1FF">
+                            {{workspace.name}}
+                        </v-card-subtitle>
+                        <v-chip
+                            color="#C6D5F5"
+                            v-if="workspace == currentWorkspace"
+                        >
+                            Current
+                        </v-chip>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-h5 grey--text">$</span>
+                        <span class="text-h5">{{workspace.balance}}</span>
+                    </div>
+                </v-card>
+            </div>
+
+        </v-card>
+
     </div>
 </template>
 
@@ -93,15 +97,11 @@
         flex-direction: column;
         justify-content: space-around;
         height: 100%;
+        padding: 0 15px;
     }
 
     .user {
         margin-top: 30px;
-    }
-
-    .balance-amount {
-        width: 90%;
-        margin: 10px auto;
     }
 
     .card-subtitle {
@@ -112,16 +112,17 @@
 
     .workspaces {
         height: 55%;
+    }
+
+    .workspaces-card-list {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
     }
 
     .workspace-card {
-        width: 90%;
         height: 25%;
         padding: 16px;
-        margin: auto;
+        margin-bottom: 30px;
     }
 
     .workspace-title {
