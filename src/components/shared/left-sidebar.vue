@@ -65,16 +65,37 @@
                         <span class="text-h5">{{workspace.balance}}</span>
                     </div>
                 </v-card>
+                <atomio-button
+                    @click="addWorkspaceForm=true"
+                    class="add-workspace-btn"
+                >
+                    New workspace
+                </atomio-button>
             </div>
-
         </v-card>
-
+        <a-form
+            v-if="addWorkspaceForm"
+            type="addWorkspace"
+            :act="item => this.$store.commit('addWorkspace', item)"
+            title="Create new workspace"
+            @closeForm="addWorkspaceForm=false"
+        ></a-form>
     </div>
 </template>
 
 <script>
+    import AForm from './form.vue'
+
     export default {
         name: "left-sidebar",
+        components: {
+            AForm,
+        },
+        data() {
+            return {
+                addWorkspaceForm: false,
+            }
+        },
         methods: {
             changeWorkspace(item) {
                 this.$store.commit('changeWorkspace', item)
@@ -129,6 +150,10 @@
         background-color: #8C8BF0;
         padding: 5px;
         border-radius: 10px;
+    }
+
+    .add-workspace-btn {
+        z-index: 5;
     }
 
 </style>

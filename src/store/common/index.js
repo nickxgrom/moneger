@@ -113,6 +113,9 @@ const module = {
         addTransaction(state, item) {
             this.getters.currentWorkspace.transactions.push(item)
         },
+        addWorkspace(state, item) {
+            state.workspaces.push(item)
+        }
     },
     getters: {
         currentWorkspace(state) {

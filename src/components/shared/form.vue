@@ -4,52 +4,63 @@
             class="a-form"
             :show-errors="true"
         >
-            <span class="text-h4 mb-3 black--text text-center">
+            <span class="form-title">
                 {{title}}
             </span>
 
-            <v-select
-                v-if="type=='transactions' || 'expense'"
-                v-model="transactionCategory"
-                :items="categories"
-                no-data-text="no data"
-                placeholder="Category"
-                outlined
-                light
-                filled
-            >
-            </v-select>
+            <div class="flex-vert">
+                <atomio-select
+                    v-if="transactionForm"
+                    v-model="transactionCategory"
+                    placeholder="Category"
+                    class="mb-4"
+                >
+                    <atomio-select-option
+                        v-for="category in categories"
+                        :key="category"
+                        :value="category"
+                    >
+                        {{category}}
+                    </atomio-select-option>
+                </atomio-select>
 
-            <atomio-text-input
-                v-model="transactionName"
-                placeholder="Name of transaction"
-            >
-            </atomio-text-input>
+                <atomio-text-input
+                    v-model="transactionName"
+                    :placeholder="`Name of ${transactionForm ? 'transaction' : 'workspace'}`"
+                    class="mb-4"
+                >
+                </atomio-text-input>
 
-            <v-row>
-                <v-col cols="7">
+                <div class="flex-hor mb-4">
                     <atomio-text-input
                         v-model="transactionValue"
+                        :placeholder="`${transactionForm ? 'Value' : 'Balance'}`"
                     ></atomio-text-input>
-                </v-col>
-                <v-col>
                     <atomio-date-time-select
+                        v-if="transactionForm"
                         v-model="transactionDate"
+                        mode="date"
+                        placeholder="Date"
+                        class="ml-4"
                     ></atomio-date-time-select>
-                </v-col>
-            </v-row>
+                </div>
 
-            <atomio-button
-                @click="formSubmit"
-            >
-                enter
-            </atomio-button>
-            <atomio-button
-                style="background: #c3c3c3;"
-                @click="$emit('closeForm')"
-            >
-                cancel
-            </atomio-button>
+                <div class="flex-hor">
+                    <atomio-button
+                        style="background: #CAA8DB;"
+                        @click="$emit('closeForm')"
+                        class="form-btn"
+                    >
+                        Cancel
+                    </atomio-button>
+                    <atomio-button
+                        @click="formSubmit"
+                        class="form-btn"
+                    >
+                        Add {{transactionForm ? "transaction" : "workspace"}}
+                    </atomio-button>
+                </div>
+            </div>
         </atomio-form>
     </v-overlay>
 </template>
@@ -73,14 +84,33 @@ export default {
     },
     methods: {
         formSubmit() {
-            this.$props.act({
-                title: this.transactionName,
-                type: this.$props.type,
-                category: this.transactionCategory,
-                value: this.transactionValue,
-                date: this.transactionDate
-            })
+            let item;
+            if (this.transactionForm) {
+                item = {
+                    title: this.transactionName,
+                    type: this.$props.type,
+                    category: this.transactionCategory,
+                    value: this.transactionValue,
+                    date: this.transactionDate
+                }
+            } else {
+                item = {
+                    name: this.transactionName,
+                    balance: this.transactionValue,
+                    percents: 0,
+                    monthLimit: 0,
+                    spentThisMonth: 0,
+                    categories: [],
+                    transactions: []
+                }
+            }
+            this.$props.act(item)
             this.$emit('closeForm')
+        },
+    },
+    computed: {
+        transactionForm() {
+            return this.$props.type === 'replenishment' || this.$props.type === 'expense'
         }
     }
 }
@@ -89,7 +119,30 @@ export default {
 <style scoped>
     .a-form {
         background: #ffffff;
-        padding: 10px 30px;
+        padding: 24px 30px;
         border-radius: 10px;
+    }
+
+    .form-title {
+        font-size: 2em;
+        font-family: QuickSand, sans-serif;
+        color: #000;
+        margin: 0 auto 16px;
+    }
+
+    .flex-vert {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .flex-hor {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-btn:last-child {
+        width: 100%;
+        margin-left: 16px;
     }
 </style>
