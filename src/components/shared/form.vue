@@ -100,7 +100,7 @@ export default {
                     percents: 0,
                     monthLimit: 0,
                     spentThisMonth: 0,
-                    categories: [],
+                    categories: undefined,
                     transactions: []
                 }
             }
