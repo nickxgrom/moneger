@@ -8,8 +8,8 @@
             :start-angle="0"
             @section-click="handleSectionClick">
         <div>
-            <span class="text-h4">{{this.currentCategory.label || this.$props.categories[0].label}}</span> <br>
-<!--            <span>{{this.currentCategory.value || this.$props.categories[0].value}}</span>-->
+            <span class="text-h4">{{currentCategory.label || 'You have no any category yet'}}</span> <br>
+            <span>{{currentCategory.label ? `${currentCategory.value}$` : ''}}</span>
         </div>
     </vc-donut>
 </template>
@@ -17,7 +17,7 @@
     export default {
         data() {
             return {
-                currentCategory: {}
+                currentCategory: this.$props.categories[0]
             }
         },
         methods: {
@@ -36,13 +36,16 @@
                 default: () => {
                     return [
                         {
-                            label: 'You have no any category yet',
-                            value: 1,
+                            label: '',
+                            value: 20,
                             color: '#c3c3c3'
-                        }
+                        },
                     ]
                 }
             }
+        },
+        updated() {
+            this.currentCategory = this.$props.categories[0]
         },
         watch: {
             categories: function() {
