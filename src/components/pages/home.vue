@@ -63,22 +63,14 @@
                             <span class="text-h5">732</span>
                         </v-card>
                         <div class="tile">
-                            <v-btn
-                                @click="addReplenishmentFormVisible=true"
-                                small block
+                            <atomio-button
+                                compact
+                                @click="addTransactionFormVisible=true"
                                 color="success"
-                                class="mb-3"
+                                class="add-transaction-button"
                             >
-                                Add income
-                            </v-btn>
-                            <v-btn
-                                @click="addExpenseFormVisible=true"
-                                small block
-                                color="error"
-                                class="px-0"
-                            >
-                                Add expense
-                            </v-btn>
+                                Add transaction
+                            </atomio-button>
                         </div>
                     </div>
                 </v-card>
@@ -112,21 +104,12 @@
             </div>
         </v-card>
         <a-form
-            v-if="addReplenishmentFormVisible"
+            v-if="addTransactionFormVisible"
             type="replenishment"
             title="Add replenishment"
             :categories="['Sport', 'Health']"
-            :act="item => { this.$store.commit('addTransaction', item) }"
-            @closeForm="addReplenishmentFormVisible=false"
-        >
-        </a-form>
-        <a-form
-            v-if="addExpenseFormVisible"
-            type="expense"
-            title="Add expense"
-            :categories="['Sport', 'Health']"
-            :act="item => { this.$store.commit('addTransaction', item) }"
-            @closeForm="addExpenseFormVisible=false"
+            :act="item => this.$store.commit('addTransaction', item)"
+            @closeForm="addTransactionFormVisible=false"
         >
         </a-form>
     </div>
@@ -144,8 +127,7 @@
         },
         data(){
             return {
-                addReplenishmentFormVisible: false,
-                addExpenseFormVisible: false,
+                addTransactionFormVisible: false,
                 totalBudget: [
                     {
                         name: "Budget",
@@ -225,5 +207,14 @@
         width: 49%;
         margin: 0 0 5px 0;
         padding: 5px 10px;
+    }
+
+    .add-transaction-button {
+        background: #67a734;
+        z-index: 4;
+    }
+
+    .add-transaction-button:before {
+        background: #3d8602;
     }
 </style>

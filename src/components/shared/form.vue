@@ -5,7 +5,18 @@
             :show-errors="true"
         >
             <span class="form-title">
-                {{title}}
+                Add <span v-if="!transactionForm">workspace</span>
+                <atomio-select
+                    v-model="transactionType"
+                    v-if="transactionForm"
+                >
+                    <atomio-select-option
+                        v-for="title in ['replenishment', 'expense']"
+                        :key="title"
+                        :value="title"
+                        :selected="title==='replenishment'"
+                    >{{title}}</atomio-select-option>
+                </atomio-select>
             </span>
 
             <div class="flex-vert">
@@ -70,6 +81,7 @@ export default {
     name: "a-form",
      data() {
         return {
+            transactionType: this.$props.type,
             transactionName: "",
             transactionCategory: "",
             transactionValue: "",
@@ -78,7 +90,6 @@ export default {
      },
     props: {
         type: String,
-        title: String,
         categories: Array,
         act: Function,
     },
@@ -88,7 +99,7 @@ export default {
             if (this.transactionForm) {
                 item = {
                     title: this.transactionName,
-                    type: this.$props.type,
+                    type: this.transactionType,
                     category: this.transactionCategory,
                     value: this.transactionValue,
                     date: this.transactionDate
