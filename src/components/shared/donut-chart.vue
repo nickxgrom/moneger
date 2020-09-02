@@ -44,12 +44,9 @@
                 }
             }
         },
-        updated() {
-            this.currentCategory = this.$props.categories[0]
-        },
         watch: {
             categories: function() {
-                this.currentCategory = {}
+                this.currentCategory = this.$props.categories[0]
             }
         },
     }
