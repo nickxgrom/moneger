@@ -101,15 +101,6 @@
                 </v-card>
             </div>
         </v-card>
-<!--        <a-form-->
-<!--            v-if="addTransactionFormVisible"-->
-<!--            type="replenishment"-->
-<!--            title="Add replenishment"-->
-<!--            :categories="['Sport', 'Health']"-->
-<!--            :act="item => this.$store.commit('addTransaction', item)"-->
-<!--            @closeForm="addTransactionFormVisible=false"-->
-<!--        >-->
-<!--        </a-form>-->
         <add-transaction-form
             v-if="addTransactionFormVisible"
             @closeForm="addTransactionFormVisible=false"

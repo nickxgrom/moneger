@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import LeftSidebar from './components/shared/left-sidebar.vue'
+    import LeftSidebar from './components/shared/left-sidebar/left-sidebar.vue'
     import RightSidebar from './components/shared/right-sidebar.vue'
     export default {
         name: "app",

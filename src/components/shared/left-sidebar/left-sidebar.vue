@@ -66,34 +66,31 @@
                     </div>
                 </v-card>
                 <atomio-button
-                    @click="addWorkspaceForm=true"
+                    @click="addWorkspaceFormVisible=true"
                     class="add-workspace-btn"
                 >
                     New workspace
                 </atomio-button>
             </div>
         </v-card>
-        <a-form
-            v-if="addWorkspaceForm"
-            type="addWorkspace"
-            :act="item => this.$store.commit('addWorkspace', item)"
-            title="Create new workspace"
-            @closeForm="addWorkspaceForm=false"
-        ></a-form>
+        <add-workspace-form
+            v-if="addWorkspaceFormVisible"
+            @closeForm="addWorkspaceFormVisible=false"
+        ></add-workspace-form>
     </div>
 </template>
 
 <script>
-    import AForm from './form-wrapper.vue'
+    import AddWorkspaceForm from './add-workspace-form.vue'
 
     export default {
         name: "left-sidebar",
         components: {
-            AForm,
+            AddWorkspaceForm
         },
         data() {
             return {
-                addWorkspaceForm: false,
+                addWorkspaceFormVisible: false,
             }
         },
         methods: {
