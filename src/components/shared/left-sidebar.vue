@@ -84,7 +84,7 @@
 </template>
 
 <script>
-    import AForm from './form.vue'
+    import AForm from './form-wrapper.vue'
 
     export default {
         name: "left-sidebar",

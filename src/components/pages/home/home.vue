@@ -77,13 +77,11 @@
             </v-col>
         </v-row>
 
-        <div class="ma-4 text-center">
+        <div class="ma-4">
             <donut-chart :categories="workspace.categories"></donut-chart>
-            <v-btn
-                color="primary"
-            >
+            <atomio-button class="show-more-btn">
                 Show more
-            </v-btn>
+            </atomio-button>
         </div>
 
         <v-card  class="general" flat>
@@ -103,27 +101,33 @@
                 </v-card>
             </div>
         </v-card>
-        <a-form
+<!--        <a-form-->
+<!--            v-if="addTransactionFormVisible"-->
+<!--            type="replenishment"-->
+<!--            title="Add replenishment"-->
+<!--            :categories="['Sport', 'Health']"-->
+<!--            :act="item => this.$store.commit('addTransaction', item)"-->
+<!--            @closeForm="addTransactionFormVisible=false"-->
+<!--        >-->
+<!--        </a-form>-->
+        <add-transaction-form
             v-if="addTransactionFormVisible"
-            type="replenishment"
-            title="Add replenishment"
-            :categories="['Sport', 'Health']"
-            :act="item => this.$store.commit('addTransaction', item)"
             @closeForm="addTransactionFormVisible=false"
-        >
-        </a-form>
+        ></add-transaction-form>
     </div>
 </template>
 
 <script>
-    import DonutChart from '../shared/donut-chart.vue'
-    import AForm from '../shared/form.vue'
+    import DonutChart from '../../shared/donut-chart.vue'
+    import AForm from '../../shared/form-wrapper.vue'
+    import AddTransactionForm from './add-transaction-form.vue'
 
     export default {
         name: "home",
         components: {
             DonutChart,
             AForm,
+            AddTransactionForm,
         },
         data(){
             return {
@@ -216,5 +220,10 @@
 
     .add-transaction-button:before {
         background: #3d8602;
+    }
+
+    .show-more-btn {
+        margin: auto;
+        z-index: 4;
     }
 </style>
