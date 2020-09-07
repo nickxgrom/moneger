@@ -92,22 +92,14 @@ export default {
 }
 </script>
 
-<style scoped>
-    .form-title {
-        font-size: 2em;
-        font-family: QuickSand, sans-serif;
-        color: #000;
-        margin: 0 auto 16px;
-    }
-
+<style>
     .flex-vert {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
 
-    .flex-hor {
-        display: flex;
-        justify-content: space-between;
+    .atomio-dropdown {
+        z-index: 101;
     }
 </style>

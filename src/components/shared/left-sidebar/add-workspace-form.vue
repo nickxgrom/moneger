@@ -17,7 +17,6 @@
                 class="text-input"
                 placeholder="Balance"
             ></atomio-text-input>
-
             <atomio-text-input
                 v-model="monthLimit"
                 class="text-input ml-4"
@@ -57,7 +56,7 @@
     }
 </script>
 
-<style scoped>
+<style>
     .form-title {
         font-size: 2em;
         font-family: QuickSand, sans-serif;
@@ -67,10 +66,15 @@
 
     .text-input {
         margin-bottom: 16px;
+        block-size: border-box;
     }
 
     .flex-hor {
         display: flex;
         justify-content: space-between;
+    }
+
+    #atomio-unnamed-text-input {
+        padding-right: 0;
     }
 </style>

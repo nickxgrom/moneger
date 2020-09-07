@@ -1,7 +1,7 @@
 <template>
     <v-overlay>
         <atomio-form
-            class="a-form"
+            class="form-sheet"
             :show-errors="true"
         >
             <slot></slot>
@@ -33,7 +33,6 @@ export default {
     },
     methods: {
         formSubmit() {
-            // WARNING categories field (workspace creation) must be undefined
             this.$props.action()
             this.$emit('closeForm')
         },
@@ -42,7 +41,9 @@ export default {
 </script>
 
 <style scoped>
-    .a-form {
+    .form-sheet {
+        width: 600px;
+        margin: auto;
         background: #ffffff;
         padding: 24px 30px;
         border-radius: 10px;
