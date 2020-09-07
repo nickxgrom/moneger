@@ -83,24 +83,6 @@
                 Show more
             </atomio-button>
         </div>
-
-        <v-card  class="general" flat>
-            <v-card-title>All workspaces</v-card-title>
-
-            <div class="flex">
-                <v-card
-                    v-for="item in totalBudget"
-                    class="general-card text-center"
-                    :color="item.color"
-                    :key="item.name"
-                >
-                    <v-card-title>{{item.name}}</v-card-title>
-                    <span class="text-h5">
-                        {{item.value}}$
-                    </span>
-                </v-card>
-            </div>
-        </v-card>
         <add-transaction-form
             v-if="addTransactionFormVisible"
             @closeForm="addTransactionFormVisible=false"
@@ -123,23 +105,6 @@
         data(){
             return {
                 addTransactionFormVisible: false,
-                totalBudget: [
-                    {
-                        name: "Budget",
-                        value: "990,890",
-                        color: "#EBF1FF"
-                    },
-                    {
-                        name: "Income",
-                        value: "123,934",
-                        color: "#BBD6A1"
-                    },
-                    {
-                        name: "Outcome",
-                        value: "12,312",
-                        color: "#FFE5DA"
-                    }
-                ]
             }
         },
         computed: {
@@ -191,11 +156,6 @@
 
     .categories li {
         margin: 0 0 12px;
-    }
-
-    .general-card {
-        width: 30%;
-        height: 120px;
     }
 
     .tile {
