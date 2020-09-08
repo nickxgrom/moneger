@@ -79,32 +79,45 @@
 
         <div class="ma-4">
             <donut-chart :categories="workspace.categories"></donut-chart>
-            <atomio-button class="show-more-btn">
-                Show more
-            </atomio-button>
         </div>
+        <atomio-button
+            class="show-more-btn"
+            @click="workspaceSettingsFormVisible=true"
+        >
+            Workspace settings
+        </atomio-button>
+
         <add-transaction-form
             v-if="addTransactionFormVisible"
             @closeForm="addTransactionFormVisible=false"
         ></add-transaction-form>
+
+        <workspace-settings-form
+            v-if="workspaceSettingsFormVisible"
+            :workspaceName="workspace.name"
+            :categories="workspace.categories"
+            @closeForm="workspaceSettingsFormVisible=false"
+        >
+        </workspace-settings-form>
     </div>
 </template>
 
 <script>
     import DonutChart from '../../shared/donut-chart.vue'
-    import AForm from '../../shared/form-wrapper.vue'
     import AddTransactionForm from './add-transaction-form.vue'
+    import WorkspaceSettingsForm from './workspace-settings-form.vue'
 
     export default {
         name: "home",
         components: {
             DonutChart,
-            AForm,
             AddTransactionForm,
+            WorkspaceSettingsForm
         },
         data(){
             return {
                 addTransactionFormVisible: false,
+                workspaceSettingsFormVisible: false,
             }
         },
         computed: {
