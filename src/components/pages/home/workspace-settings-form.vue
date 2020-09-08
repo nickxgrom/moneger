@@ -2,6 +2,7 @@
     <form-wrapper
         button-title="Accept changes"
         @closeForm="$emit('closeForm')"
+        disabled
     >
         <span class="form-title">Change workspace</span>
         <atomio-text-input
@@ -13,25 +14,21 @@
             placeholder="Month limit"
         ></atomio-text-input>
 
-        <div>
-            <div
-                v-for="category in categories"
-                :style="`background: ${category.color}`"
-                class="categories-list"
-            >
-                {{category.label}}
-            </div>
-        </div>
+        <list
+            :items="categories"
+        ></list>
     </form-wrapper>
 </template>
 
 <script>
     import FormWrapper from '../../shared/form-wrapper.vue'
+    import List from '../../shared/list.vue'
 
     export default {
         name: "workspace-settings-form",
         components: {
             FormWrapper,
+            List,
         },
         props: ['workspaceName', 'categories']
     }

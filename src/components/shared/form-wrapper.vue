@@ -16,6 +16,7 @@
                 <atomio-button
                     @click="formSubmit"
                     class="form-btn"
+                    :disabled="disabled"
                 >
                     {{buttonTitle}}
                 </atomio-button>
@@ -30,6 +31,7 @@ export default {
     props: {
         buttonTitle: String,
         action: Function,
+        disabled: Boolean,
     },
     methods: {
         formSubmit() {
