@@ -18,6 +18,7 @@
             <div class="card-title">Categories</div>
             <list
                 :items="categories"
+                two-column
             ></list>
             <div class="add-category">
                 <div>
