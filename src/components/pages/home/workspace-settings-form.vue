@@ -23,19 +23,19 @@
             <div class="add-category">
                 <div>
                     <atomio-text-input
+                        v-model="categoryName"
                         placeholder="Category name"
                     ></atomio-text-input>
                 </div>
                 <atomio-button
+                    @click="addCategory"
                     compact
-                    disabled
                     class="add-category-btn"
                 >
-                    New category
+                    Add category
                 </atomio-button>
             </div>
         </div>
-
     </form-wrapper>
 </template>
 
@@ -49,7 +49,18 @@
             FormWrapper,
             List,
         },
-        props: ['workspaceName', 'categories']
+        data() {
+            return {
+                categoryName: "",
+            }
+        },
+        props: ['workspaceName', 'categories'],
+        methods: {
+            addCategory() {
+                this.$store.commit('addCategory', {label: this.categoryName, value: 100, color: '#000000'})
+                this.categoryName = ""
+            }
+        }
     }
 </script>
 

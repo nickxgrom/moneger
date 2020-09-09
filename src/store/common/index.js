@@ -115,6 +115,9 @@ const module = {
         },
         addWorkspace(state, item) {
             state.workspaces.push(item)
+        },
+        addCategory(state, category) {
+            this.getters.currentWorkspace.categories.push(category)
         }
     },
     getters: {
