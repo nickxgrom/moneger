@@ -10,18 +10,15 @@ const module = {
                 spentThisMonth: 600,
                 categories: [
                     {
-                        label: "h1",
-                        value: 200,
+                        name: "h1",
                         color: '#FF6384'
                     },
                     {
-                        label: "p1",
-                        value: 200,
+                        name: "p1",
                         color: '#36A2EB'
                     },
                     {
-                        label: "s1",
-                        value: 200,
+                        name: "s1",
                         color: '#FFCE56'
                     },
                 ],
@@ -30,22 +27,22 @@ const module = {
                         title: 'Shop',
                         type: "replenishment",
                         date: new Date(),
-                        value: '100',
-                        category: "Products",
+                        value: 100,
+                        category: "p1",
                     },
                     {
                         title: 'Shop',
                         type: "replenishment",
                         date: new Date(),
-                        value: '30',
-                        category: "Shopping",
+                        value: 30,
+                        category: "s1",
                     },
                     {
                         title: 'Workout team',
                         type: "replenishment",
                         date: new Date(),
-                        value: '200',
-                        category: "Sport",
+                        value: 200,
+                        category: "h1",
                     },
 
                 ]
@@ -58,18 +55,15 @@ const module = {
                 spentThisMonth: 4320,
                 categories: [
                     {
-                        label: "h2",
-                        value: 200,
+                        name: "h2",
                         color: '#FF6384'
                     },
                     {
-                        label: "p2",
-                        value: 2200,
+                        name: "p2",
                         color: '#36A2EB'
                     },
                     {
-                        label: "s2",
-                        value: 2100,
+                        name: "s2",
                         color: '#FFCE56'
                     },
                 ],
@@ -78,29 +72,29 @@ const module = {
                         title: 'Coffee',
                         type: "replenishment",
                         date: new Date(),
-                        value: '20',
-                        category: "Products",
+                        value: 20,
+                        category: "p1",
                     },
                     {
                         title: 'Service',
                         type: "replenishment",
                         date: new Date(),
-                        value: '200',
-                        category: "Other",
+                        value: 200,
+                        category: "o2",
                     },
                     {
                         title: 'Rent',
                         type: "replenishment",
                         date: new Date(),
-                        value: '400',
-                        category: "Other",
+                        value: 400,
+                        category: "o2",
                     },
                     {
                         title: 'Toothbrush',
                         type: "replenishment",
                         date: new Date(),
-                        value: '20',
-                        category: "Health",
+                        value: 20,
+                        category: "h1",
                     },
                 ]
             },

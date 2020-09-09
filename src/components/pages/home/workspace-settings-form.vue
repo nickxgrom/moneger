@@ -57,7 +57,10 @@
         props: ['workspaceName', 'categories'],
         methods: {
             addCategory() {
-                this.$store.commit('addCategory', {label: this.categoryName, value: 100, color: '#000000'})
+
+                this.$store.commit('addCategory', {
+                    name: this.categoryName,
+                    color: '#000000'})
                 this.categoryName = ""
             }
         }

@@ -78,7 +78,10 @@
         </v-row>
 
         <div class="ma-4">
-            <donut-chart :categories="workspace.categories"></donut-chart>
+            <donut-chart
+                :categories="workspace.categories"
+                :transactions="workspace.transactions"
+            ></donut-chart>
         </div>
         <atomio-button
             class="show-more-btn"

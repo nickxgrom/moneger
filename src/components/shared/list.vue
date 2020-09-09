@@ -7,7 +7,7 @@
             :class="{ 'item': true, 'two-column-item': twoColumn }"
             :style="`background: ${item.color}`"
         >
-            {{item.label}}
+            {{item.name}}
         </div>
     </div>
 </template>
