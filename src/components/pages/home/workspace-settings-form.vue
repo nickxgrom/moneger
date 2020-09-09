@@ -14,9 +14,27 @@
             placeholder="Month limit"
         ></atomio-text-input>
 
-        <list
-            :items="categories"
-        ></list>
+        <div class="main">
+            <div class="card-title">Categories</div>
+            <list
+                :items="categories"
+            ></list>
+            <div class="add-category">
+                <div>
+                    <atomio-text-input
+                        placeholder="Category name"
+                    ></atomio-text-input>
+                </div>
+                <atomio-button
+                    compact
+                    disabled
+                    class="add-category-btn"
+                >
+                    New category
+                </atomio-button>
+            </div>
+        </div>
+
     </form-wrapper>
 </template>
 
@@ -35,8 +53,26 @@
 </script>
 
 <style scoped>
-    .categories-list {
-        color: black;
+    .card-title {
+        font-family: QuickSand, sans-serif;
+        font-weight: 600;
+        color: #757575;
+        font-size: 1.25em;
+        margin-bottom: 10px;
+    }
+
+    .main {
+        padding: 16px;
         margin-bottom: 16px;
+        background: #f1f1f1;
+        border-radius: 15px;
+    }
+
+    .add-category {
+        display: flex;
+    }
+
+    .add-category-btn {
+        margin-left: 16px;
     }
 </style>
