@@ -63,7 +63,7 @@ const module = {
                         color: '#36A2EB'
                     },
                     {
-                        name: "s2",
+                        name: "o2",
                         color: '#FFCE56'
                     },
                 ],
@@ -73,7 +73,7 @@ const module = {
                         type: "replenishment",
                         date: new Date(),
                         value: 20,
-                        category: "p1",
+                        category: "p2",
                     },
                     {
                         title: 'Service',
@@ -94,7 +94,7 @@ const module = {
                         type: "replenishment",
                         date: new Date(),
                         value: 20,
-                        category: "h1",
+                        category: "h2",
                     },
                 ]
             },
@@ -117,7 +117,7 @@ const module = {
     getters: {
         currentWorkspace(state) {
             return state.currentWorkspace || state.workspaces[0]
-        }
+        },
     }
 }
 

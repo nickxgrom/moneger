@@ -3,12 +3,12 @@
             background="white" foreground="#E5E5E5"
             :size="300" :thickness="20"
             has-legend legend-placement="bottom"
-            :sections="arr"
-            :total="total(arr)"
+            :sections="sections"
+            :total="totalAmount"
             :start-angle="0"
             @section-click="handleSectionClick">
         <div>
-            <span class="text-h4">{{currentCategory.label || 'You have no any category yet'}}</span> <br>
+            <span class="text-h4">{{'work still in progress'}}</span> <br>
             <span class="text-h4">{{currentCategory.value}}</span>
         </div>
     </vc-donut>
@@ -18,37 +18,41 @@
         data() {
             return {
                 currentCategory: this.$props.categories[0],
-                arr: []
             }
         },
         methods: {
             handleSectionClick(section) {
                 this.currentCategory = section
             },
-            total: (arr) => {
-                return arr.reduce( (sum, current) => {
+        },
+        computed: {
+            totalAmount() {
+                return this.transactions.reduce( (sum, current) => {
                     return sum + current.value
                 }, 0)
             },
-            tt() {
-                this.categories.forEach(item => {
-                    item.transactions = this.transactions.filter(it => {
-                        return it.category === item.name
+            sections() {
+                let arr = []
+                for (let i=0; i<this.categories.length; i++) {
+                    arr.push({
+                        value: this.sortedTransaction[i].reduce( (sum, current ) => {
+                            return sum + current.value
+                        }, 0),
+                        label: this.categories[i].name,
+                        color: this.categories[i].color,
                     })
-                })
-
-                this.categories.forEach(item => {
-                    let obj = {
-                        label: item.name,
-                        color: item.color,
-                        value: this.total(item.transactions)
-                    }
-                    this.arr.push(obj)
-                })
+                }
+                return arr
             },
-        },
-        created() {
-            this.tt()
+            sortedTransaction() {
+                let arr =[]
+                this.categories.forEach( category => {
+                    arr.push(this.transactions.filter(item => {
+                        return category.name === item.category
+                    }))
+                })
+                return arr
+            },
         },
         props: {
             categories: {
