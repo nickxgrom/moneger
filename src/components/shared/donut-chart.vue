@@ -8,8 +8,8 @@
             :start-angle="0"
             @section-click="handleSectionClick">
         <div>
-            <span class="text-h4">{{'work still in progress'}}</span> <br>
-            <span class="text-h4">{{currentCategory.value}}</span>
+            <span class="text-h4">{{currentCategory.name || sections[0].label}}</span> <br>
+            <span class="text-h4">{{currentCategory.value || sections[0].value}}</span>
         </div>
     </vc-donut>
 </template>
@@ -17,12 +17,15 @@
     export default {
         data() {
             return {
-                currentCategory: this.$props.categories[0],
+                currentCategory: {},
             }
         },
         methods: {
             handleSectionClick(section) {
-                this.currentCategory = section
+                this.currentCategory = {
+                    name: section.label,
+                    value: section.value
+                }
             },
         },
         computed: {
@@ -60,8 +63,7 @@
                 default: () => {
                     return [
                         {
-                            name: '',
-                            value: 20,
+                            name: 'You have no any category',
                             color: '#c3c3c3'
                         },
                     ]
@@ -69,11 +71,19 @@
             },
             transactions: {
                 type: Array,
+                default: () => {
+                    return [
+                        {
+                            category: "You have no any category",
+                            value: 100
+                        }
+                    ]
+                }
             }
         },
         watch: {
             categories: function() {
-                this.currentCategory = this.$props.categories[0]
+                this.currentCategory = {}
             }
         },
     }
