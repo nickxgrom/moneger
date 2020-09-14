@@ -8,11 +8,9 @@
             >
                 <div
                     class="transaction-card flex"
-                    :style="`border: 1px solid ${item.type == 'replenishment' ? '#00FF00' : '#FF0000'}`">
+                    :class="{ replenishment: item.type === 'replenishment', expense: item.type === 'expense' }"
+                >
                     <div style="display: flex">
-                        <div class="icon">
-                            <v-icon medium>mdi-cart-outline</v-icon>
-                        </div>
                         <div>
                             <span class="transaction-card-title">
                                 {{item.title}}
@@ -31,7 +29,7 @@
                 </div>
             </li>
         </ul>
-        <v-btn style="float: right">Show more</v-btn>
+        <atomio-button compact>Show more</atomio-button>
     </div>
 </template>
 
@@ -83,12 +81,13 @@
         align-items: center;
     }
 
-    .icon {
-        width: 45px;
-        height: 45px;
-        margin-right: 10px;
-        padding: 10px;
-        border-radius: 10px;
-        background-color: rgba(0, 0, 255, .4);
+    .replenishment {
+        background: #88B165;
+        color: #303030
+    }
+
+    .expense {
+        background: #EAA08F;
+        color: #303030
     }
 </style>
