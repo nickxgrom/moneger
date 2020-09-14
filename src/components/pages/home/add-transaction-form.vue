@@ -25,11 +25,11 @@
                 class="mb-4"
             >
                 <atomio-select-option
-                    v-for="category in categories"
-                    :key="category"
-                    :value="category"
+                    v-for="option in options"
+                    :key="option.name"
+                    :value="option.name"
                 >
-                    {{category}}
+                    {{option.name}}
                 </atomio-select-option>
             </atomio-select>
 
@@ -73,10 +73,8 @@ export default {
             transactionDate: new Date(),
         }
     },
-    computed: {
-        categories() {
-            return ['Sport', 'Health', 'Products']
-        }
+    props: {
+        options: Array,
     },
     methods: {
         addTransaction() {

@@ -93,6 +93,7 @@
         <add-transaction-form
             v-if="addTransactionFormVisible"
             @closeForm="addTransactionFormVisible=false"
+            :options="workspace.categories"
         ></add-transaction-form>
 
         <workspace-settings-form
