@@ -22,10 +22,21 @@
             ></list>
             <div class="add-category">
                 <div>
-                    <atomio-text-input
-                        v-model="categoryName"
-                        placeholder="Category name"
-                    ></atomio-text-input>
+                    <atomio-field>
+                        <atomio-text-input
+                            v-model="categoryName"
+                            placeholder="Category name"
+                            :maxlength="16"
+                            lazy-validation
+                            :rules="[
+                                {
+                                    validator: value => categoryNameValid(value),
+                                    errorMessage: 'Field not valid'
+                                }
+                            ]"
+                        ></atomio-text-input>
+                    </atomio-field>
+
                 </div>
                 <atomio-button
                     @click="addCategory"
@@ -57,11 +68,17 @@
         props: ['workspaceName', 'categories'],
         methods: {
             addCategory() {
-
+                if (!this.categoryNameValid(this.categoryName)) {
+                    console.error('input value is not valid')
+                    return
+                }
                 this.$store.commit('addCategory', {
                     name: this.categoryName,
                     color: '#000000'})
                 this.categoryName = ""
+            },
+            categoryNameValid(val) {
+                return /^[а-яА-ЯёЁa-zA-Z0-9\s_]{2,12}$/.test(val)
             }
         }
     }
