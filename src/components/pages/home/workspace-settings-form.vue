@@ -21,7 +21,7 @@
                 two-column
             ></list>
             <div class="add-category">
-                <div>
+                <div class="add-category-input">
                     <atomio-field>
                         <atomio-text-input
                             v-model="categoryName"
@@ -36,14 +36,14 @@
                             ]"
                         ></atomio-text-input>
                     </atomio-field>
-
                 </div>
                 <atomio-button
                     @click="addCategory"
                     compact
                     class="add-category-btn"
+                    :disabled="categories.length >= 12"
                 >
-                    Add category
+                    {{categories.length >= 12 ? '12 categories is max' : 'Add category'}}
                 </atomio-button>
             </div>
         </div>
@@ -63,6 +63,8 @@
         data() {
             return {
                 categoryName: "",
+                colors: ['#845EC2', '#2C73D2', '#008F7A', '#C34A36', '#4B4453', '#338BA7',
+                        '#56BC2E', '#1B3D2F', '#FF6E46', '#00A9F8', '#DF4D75', '#008A61']
             }
         },
         props: ['workspaceName', 'categories'],
@@ -74,7 +76,8 @@
                 }
                 this.$store.commit('addCategory', {
                     name: this.categoryName,
-                    color: '#000000'})
+                    color: this.colors[this.$props.categories.length]
+                })
                 this.categoryName = ""
             },
             categoryNameValid(val) {
@@ -106,5 +109,9 @@
 
     .add-category-btn {
         margin-left: 16px;
+    }
+
+    .add-category-input {
+        width: 50%;
     }
 </style>
