@@ -5,23 +5,44 @@
         button-title="Add workspace"
     >
         <span class="form-title">Add workspace</span>
-        <atomio-text-input
-            v-model="name"
-            class="text-input"
-            placeholder="Name of workspace"
-        ></atomio-text-input>
+        <atomio-field no-error-message>
+            <atomio-text-input
+                v-model="name"
+                class="text-input"
+                placeholder="Name of workspace"
+                lazy-validation
+                :rules="[
+                    {
+                        validator: value => /^[а-яА-ЯёЁa-zA-Z0-9\s_]{2,12}$/.test(value),
+                        errorMessage: 'Name of workspace is not valid'
+                    }
+                ]"
+            ></atomio-text-input>
+        </atomio-field>
 
         <div class="flex-hor">
-            <atomio-text-input
-                v-model="balance"
-                class="text-input"
-                placeholder="Balance"
-            ></atomio-text-input>
-            <atomio-text-input
-                v-model="monthLimit"
+            <atomio-field no-error-message>
+                <atomio-text-input
+                    v-model="balance"
+                    placeholder="Balance"
+                    lazy-validation
+                    :rules="[
+                        {
+                            validator: value => /^\d{1,3}(,|\s|)(\d{3}(,|\s|)){0,3}(\.\d{2})$/.test(value),
+                            errorMessage: 'Wrong pattern of value'
+                        },
+                    ]"
+                ></atomio-text-input>
+            </atomio-field>
+            <atomio-field
                 class="text-input ml-4"
-                placeholder="Month limit"
-            ></atomio-text-input>
+                no-error-message
+            >
+                <atomio-text-input
+                    v-model="monthLimit"
+                    placeholder="Month limit"
+                ></atomio-text-input>
+            </atomio-field>
         </div>
     </form-wrapper>
 </template>
@@ -51,6 +72,10 @@
                     spentThisMonth: 0,
                     categories: undefined
                 })
+            },
+            formValid() {
+                console.log(/^[а-яА-ЯёЁa-zA-Z0-9\s_]{2,12}$/.test(this.name))
+               // console.log(!!(this.name && this.balance && this.monthLimit))
             }
         }
     }
@@ -65,8 +90,9 @@
     }
 
     .text-input {
-        margin-bottom: 16px;
+        /*margin-bottom: 16px;*/
         block-size: border-box;
+        width: 100%;
     }
 
     .flex-hor {
