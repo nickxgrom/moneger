@@ -1,7 +1,7 @@
 <template>
     <form-wrapper
         @closeForm="$emit('closeForm')"
-        :action="addWorkspace"
+        :action="submitForm"
         button-title="Add workspace"
     >
         <span class="form-title">Add workspace</span>
@@ -13,13 +13,12 @@
                 lazy-validation
                 :rules="[
                     {
-                        validator: value => /^[а-яА-ЯёЁa-zA-Z0-9\s_]{2,12}$/.test(value),
+                        validator: value => nameInputValid(value),
                         errorMessage: 'Name of workspace is not valid'
                     }
                 ]"
             ></atomio-text-input>
         </atomio-field>
-
         <div class="flex-hor">
             <atomio-field no-error-message>
                 <atomio-text-input
@@ -28,7 +27,7 @@
                     lazy-validation
                     :rules="[
                         {
-                            validator: value => /^\d{1,3}(,|\s|)(\d{3}(,|\s|)){0,3}(\.\d{2})$/.test(value),
+                            validator: value => balanceInputValid(value),
                             errorMessage: 'Wrong pattern of value'
                         },
                     ]"
@@ -41,6 +40,13 @@
                 <atomio-text-input
                     v-model="monthLimit"
                     placeholder="Month limit"
+                    lazy-validation
+                    :rules="[
+                        {
+                            validator: value => balanceInputValid(value),
+                            errorMessage: 'Wrong pattern of value'
+                        },
+                    ]"
                 ></atomio-text-input>
             </atomio-field>
         </div>
@@ -63,19 +69,26 @@
             }
         },
         methods: {
-            addWorkspace() {
-                this.$store.commit('addWorkspace', {
-                    name: this.name,
-                    balance: this.balance,
-                    monthLimit: this.monthLimit,
-                    percents: 0,
-                    spentThisMonth: 0,
-                    categories: undefined
-                })
+            nameInputValid(val) {
+                return /^[а-яА-ЯёЁa-zA-Z0-9\s_#]{2,12}$/.test(val)
+            },
+            balanceInputValid(val){
+                return /^\d{1,3}((,|\s|)\d{3}){0,3}(\.\d{2})?$/.test(val)
             },
             formValid() {
-                console.log(/^[а-яА-ЯёЁa-zA-Z0-9\s_]{2,12}$/.test(this.name))
-               // console.log(!!(this.name && this.balance && this.monthLimit))
+                return this.nameInputValid(this.name) && this.balanceInputValid(this.balance) && this.balanceInputValid(this.monthLimit)
+            },
+            submitForm() {
+                if (this.formValid()) {
+                    this.$store.commit('addWorkspace', {
+                        name: this.name,
+                        balance: this.balance,
+                        percents: 0,
+                        monthLimit: this.monthLimit,
+                        spentThisMonth: 0,
+                        categories: undefined,
+                    })
+                }
             }
         }
     }
