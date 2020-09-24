@@ -79,8 +79,8 @@
 
         <div class="ma-4">
             <donut-chart
-                :categories="workspace.categories"
-                :transactions="workspace.transactions"
+                :categories="categories"
+                :transactions="transactions"
             ></donut-chart>
         </div>
         <atomio-button
@@ -128,14 +128,30 @@
             workspace() {
                 return this.$store.getters.currentWorkspace
             },
-            categories() {
-                return this.workspace.categories
-            },
             limit() {
                 return this.$store.getters.currentWorkspace.monthLimit
             },
             spentThisMonth() {
                 return this.$store.getters.currentWorkspace.spentThisMonth
+            },
+            categories() {
+                if (!this.workspace.categories.length) {
+                    return [{
+                        name: 'You have no any category',
+                        color: '#c3c3c3'
+                    }]
+                }
+                return this.workspace.categories
+            },
+            transactions() {
+                if (!this.workspace.transactions.length) {
+                    return [{
+                        category: "You have no any category",
+                        value: 100
+                    }]
+                }
+                return this.workspace.transactions
+
             }
         },
     }

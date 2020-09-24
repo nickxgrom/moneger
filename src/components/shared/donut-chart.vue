@@ -57,30 +57,7 @@
                 return arr
             },
         },
-        props: {
-            categories: {
-                type: Array,
-                default: () => {
-                    return [
-                        {
-                            name: 'You have no any category',
-                            color: '#c3c3c3'
-                        },
-                    ]
-                }
-            },
-            transactions: {
-                type: Array,
-                default: () => {
-                    return [
-                        {
-                            category: "You have no any category",
-                            value: 100
-                        }
-                    ]
-                }
-            }
-        },
+        props: ['categories', 'transactions'],
         watch: {
             categories: function() {
                 this.currentCategory = {}

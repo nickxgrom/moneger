@@ -86,7 +86,8 @@
                         percents: 0,
                         monthLimit: this.monthLimit,
                         spentThisMonth: 0,
-                        categories: undefined,
+                        categories: [],
+                        transactions: []
                     })
                 }
             }
