@@ -40,7 +40,6 @@
                 :rules="[
                     {
                         validator: value => nameInputValid(value),
-                        errorMessage: 'Field not valid'
                     }
                 ]"
             >
@@ -48,7 +47,9 @@
         </atomio-field>
 
         <div class="flex-hor">
-            <atomio-field no-error-message
+            <atomio-field
+                no-error-message
+                class="value-input"
             >
                 <atomio-text-input
                     v-model="transactionValue"
@@ -57,7 +58,6 @@
                     :rules="[
                     {
                         validator: value => balanceInputValid(value),
-                        errorMessage: 'Field not valid'
                     }
 
                 ]"
@@ -66,8 +66,8 @@
             <atomio-date-time-select
                 v-model="transactionDate"
                 mode="date"
-                placeholder="Date gk"
-                class="ml-4"
+                placeholder="Select date"
+                class="date-time-select ml-4"
             ></atomio-date-time-select>
         </div>
     </form-wrapper>
@@ -116,13 +116,15 @@ export default {
 </script>
 
 <style>
-    .flex-vert {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
     .atomio-dropdown {
         z-index: 101;
+    }
+
+    .value-input {
+        flex-basis: 60%;
+    }
+
+    .date-time-select {
+        flex-basis: 40%;
     }
 </style>
