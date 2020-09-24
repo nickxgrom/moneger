@@ -31,7 +31,7 @@
         computed: {
             totalAmount() {
                 return this.transactions.reduce( (sum, current) => {
-                    return sum + current.value
+                    return sum + +current.value
                 }, 0)
             },
             sections() {
@@ -39,7 +39,7 @@
                 for (let i=0; i<this.categories.length; i++) {
                     arr.push({
                         value: this.sortedTransaction[i].reduce( (sum, current ) => {
-                            return sum + current.value
+                            return sum + +current.value
                         }, 0),
                         label: this.categories[i].name,
                         color: this.categories[i].color,
