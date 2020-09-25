@@ -50,17 +50,17 @@
                     <div class="flex">
                         <v-card class="tile">
                             <v-card-subtitle class="pa-0">Total income</v-card-subtitle>
-                            <span class="text-h5">321,324$</span>
+                            <span class="text-h5">{{ totalIncome }}$</span>
                         </v-card>
                         <v-card class="tile">
                             <v-card-subtitle class="pa-0">Total spent</v-card-subtitle>
-                            <span class="text-h5">1,324$</span>
+                            <span class="text-h5">{{ totalSpent }}$</span>
                         </v-card>
                     </div>
                     <div class="flex">
                         <v-card class="tile">
                             <v-card-subtitle class="pa-0">Transactions amount</v-card-subtitle>
-                            <span class="text-h5">732</span>
+                            <span class="text-h5">{{ workspace.transactions.length }}</span>
                         </v-card>
                         <div class="tile">
                             <atomio-button
@@ -132,6 +132,16 @@
             limit() {
                 return this.$store.getters.currentWorkspace.monthLimit
             },
+            totalIncome() {
+                return this.totalSum(this.workspace.transactions.filter( item => {
+                    return item.type == 'replenishment'
+                } ))
+            },
+            totalSpent() {
+                return this.totalSum(this.workspace.transactions.filter( item => {
+                    return item.type === 'expense'
+                } ))
+            },
             spentThisMonth() {
                 return this.$store.getters.currentWorkspace.spentThisMonth
             },
@@ -155,6 +165,13 @@
 
             }
         },
+        methods: {
+            totalSum(arr) {
+                return arr.reduce( (sum, current) => {
+                    return sum + +current.value
+                }, 0)
+            }
+        }
     }
 </script>
 
