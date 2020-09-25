@@ -106,7 +106,7 @@ export default {
                     type: this.transactionType,
                     title: this.transactionName,
                     category: this.transactionCategory,
-                    value: this.transactionValue,
+                    value: this.transactionValue.replace(/[,.\s]/, ''),
                     date: this.transactionDate
                 })
             }

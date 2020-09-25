@@ -82,9 +82,9 @@
                 if (this.formValid()) {
                     this.$store.commit('addWorkspace', {
                         name: this.name,
-                        balance: this.balance,
+                        balance: this.balance.replace(/[,.\s]/, ''),
                         percents: 0,
-                        monthLimit: this.monthLimit,
+                        monthLimit: this.monthLimit.replace(/[,.\s]/, ''),
                         spentThisMonth: 0,
                         categories: [],
                         transactions: []
