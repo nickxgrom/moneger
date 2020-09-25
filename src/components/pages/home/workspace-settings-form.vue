@@ -5,14 +5,22 @@
         disabled
     >
         <span class="form-title">Change workspace</span>
-        <atomio-text-input
-            :placeholder="workspaceName"
+        <atomio-field
+            no-error-message
             class="text-input"
-        ></atomio-text-input>
-        <atomio-text-input
+        >
+            <atomio-text-input
+                :placeholder="workspaceName"
+            ></atomio-text-input>
+        </atomio-field>
+        <atomio-field
+            no-error-message
             class="text-input"
-            placeholder="Month limit"
-        ></atomio-text-input>
+        >
+            <atomio-text-input
+                placeholder="Month limit"
+            ></atomio-text-input>
+        </atomio-field>
 
         <div class="main">
             <div class="card-title">Categories</div>
@@ -22,7 +30,10 @@
             ></list>
             <div class="add-category">
                 <div class="add-category-input">
-                    <atomio-field>
+                    <atomio-field
+                        no-error-message
+                        class="ma-0"
+                    >
                         <atomio-text-input
                             v-model="categoryName"
                             placeholder="Category name"
@@ -109,9 +120,14 @@
 
     .add-category-btn {
         margin-left: 16px;
+        flex-basis: 40%;
     }
 
     .add-category-input {
-        width: 50%;
+        flex-basis: 60%;
+    }
+
+    .text-input {
+        margin: 0 0 16px 0;
     }
 </style>
