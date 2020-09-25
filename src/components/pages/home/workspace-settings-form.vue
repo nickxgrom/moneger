@@ -2,7 +2,7 @@
     <form-wrapper
         button-title="Accept changes"
         @closeForm="$emit('closeForm')"
-        disabled
+        :action="acceptChanges"
     >
         <span class="form-title">Change workspace</span>
         <atomio-field
@@ -10,7 +10,12 @@
             class="text-input"
         >
             <atomio-text-input
+                v-model="newWorkspaceName"
                 :placeholder="workspaceName"
+                lazy-validation
+                :rules="[{
+                    validator: value => nameInputValid(value)
+                }]"
             ></atomio-text-input>
         </atomio-field>
         <atomio-field
@@ -18,7 +23,12 @@
             class="text-input"
         >
             <atomio-text-input
-                placeholder="Month limit"
+                v-model="newMonthLimit"
+                :placeholder="String(monthLimit)"
+                lazy-validation
+                :rules="[{
+                    validator: value => balanceInputValid(value)
+                }]"
             ></atomio-text-input>
         </atomio-field>
 
@@ -41,7 +51,7 @@
                             lazy-validation
                             :rules="[
                                 {
-                                    validator: value => categoryNameValid(value),
+                                    validator: value => nameInputValid(value),
                                     errorMessage: 'Field not valid'
                                 }
                             ]"
@@ -73,15 +83,17 @@
         },
         data() {
             return {
+                newWorkspaceName: '',
+                newMonthLimit: '',
                 categoryName: "",
                 colors: ['#845EC2', '#2C73D2', '#008F7A', '#C34A36', '#4B4453', '#338BA7',
                         '#56BC2E', '#1B3D2F', '#FF6E46', '#00A9F8', '#DF4D75', '#008A61']
             }
         },
-        props: ['workspaceName', 'categories'],
+        props: ['workspaceName', 'categories', 'monthLimit'],
         methods: {
             addCategory() {
-                if (!this.categoryNameValid(this.categoryName)) {
+                if (!this.nameInputValid(this.categoryName)) {
                     console.error('input value is not valid')
                     return
                 }
@@ -91,8 +103,19 @@
                 })
                 this.categoryName = ""
             },
-            categoryNameValid(val) {
-                return /^[а-яА-ЯёЁa-zA-Z0-9\s_]{2,12}$/.test(val)
+            nameInputValid(val) {
+                return /^[а-яА-ЯёЁa-zA-Z0-9\s_#]{2,12}$/.test(val)
+            },
+            balanceInputValid(val){
+                return !this.newMonthLimit || /^\d{1,3}((,|\s|)\d{3}){0,3}(\.\d{2})?$/.test(val)
+            },
+            acceptChanges() {
+                if (this.nameInputValid(this.newWorkspaceName) && this.balanceInputValid(this.newMonthLimit)) {
+                    this.$store.commit('changeWorkspaceData', {
+                        name: this.newWorkspaceName,
+                        monthLimit: this.newMonthLimit.replace(/[,.\s]/, '')
+                    })
+                }
             }
         }
     }

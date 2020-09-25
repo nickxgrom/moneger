@@ -100,6 +100,7 @@
             v-if="workspaceSettingsFormVisible"
             :workspaceName="workspace.name"
             :categories="workspace.categories"
+            :monthLimit="workspace.monthLimit"
             @closeForm="workspaceSettingsFormVisible=false"
         >
         </workspace-settings-form>

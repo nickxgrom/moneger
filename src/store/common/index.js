@@ -112,6 +112,10 @@ const module = {
         },
         addCategory(state, category) {
             this.getters.currentWorkspace.categories.push(category)
+        },
+        changeWorkspaceData(state, data) {
+            this.getters.currentWorkspace.name = data.name
+            this.getters.currentWorkspace.monthLimit = data.monthLimit
         }
     },
     getters: {
