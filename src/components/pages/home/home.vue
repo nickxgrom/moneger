@@ -10,12 +10,12 @@
                         <v-progress-circular
                             size="120"
                             rotate="270"
-                            :value="Math.abs(spentThisMonth)*100/limit"
+                            :value="spentThisMonth*100/limit"
                             color="#8C8BF0"
                         >
                             <div class="text-center">
                                 <v-card-text class="pb-0 headline">
-                                    {{ Math.abs(spentThisMonth) }}$
+                                    {{ spentThisMonth }}$
                                 </v-card-text>
                                 <v-card-subtitle class="pt-0">
                                     of {{workspace.monthLimit}}$ limit
@@ -28,14 +28,14 @@
                                 <li>
                                     <v-card-title class="pa-0 pb-4">
                                         <v-icon small color="#68993F">mdi-circle</v-icon>
-                                        6,345$
+                                        {{ incomeThisMonth }}$
                                     </v-card-title>
                                     <v-card-subtitle class="pb-0 px-0">Income</v-card-subtitle>
                                 </li>
                                 <li>
                                     <v-card-title class="pa-0 pb-4">
                                         <v-icon small color="#D96B55">mdi-circle</v-icon>
-                                        3,123$
+                                        {{ spentThisMonth }}$
                                     </v-card-title>
                                     <v-card-subtitle class="pb-0 px-0">Spent</v-card-subtitle>
                                 </li>
@@ -143,8 +143,13 @@
                 } )))
             },
             spentThisMonth() {
-                return this.totalSum(this.workspace.transactions.filter( item => {
+                return Math.abs(this.totalSum(this.workspace.transactions.filter( item => {
                     return ((item.type === 'expense') && (item.date.getMonth() == new Date().getMonth()))
+                })))
+            },
+            incomeThisMonth() {
+                return this.totalSum(this.workspace.transactions.filter( item => {
+                    return ((item.type === 'replenishment') && (item.date.getMonth() == new Date().getMonth()))
                 }))
             },
             categories() {
