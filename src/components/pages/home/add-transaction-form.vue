@@ -102,11 +102,12 @@ export default {
         },
         submitForm() {
             if (this.nameInputValid(this.transactionName) && this.balanceInputValid(this.transactionValue)) {
+                let transVal = this.transactionValue.replace(/[,\s]/, '')
                 this.$store.commit('addTransaction', {
                     type: this.transactionType,
                     title: this.transactionName,
                     category: this.transactionCategory,
-                    value: this.transactionValue.replace(/[,\s]/, ''),
+                    value: this.transactionType == 'replenishment' ? transVal : -Number(transVal),
                     date: this.transactionDate
                 })
             }
