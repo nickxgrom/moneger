@@ -10,12 +10,12 @@
                         <v-progress-circular
                             size="120"
                             rotate="270"
-                            :value="spentThisMonth*100/limit"
+                            :value="Math.abs(spentThisMonth)*100/limit"
                             color="#8C8BF0"
                         >
                             <div class="text-center">
                                 <v-card-text class="pb-0 headline">
-                                    {{workspace.spentThisMonth}}$
+                                    {{ Math.abs(spentThisMonth) }}$
                                 </v-card-text>
                                 <v-card-subtitle class="pt-0">
                                     of {{workspace.monthLimit}}$ limit
@@ -143,7 +143,9 @@
                 } )))
             },
             spentThisMonth() {
-                return this.$store.getters.currentWorkspace.spentThisMonth
+                return this.totalSum(this.workspace.transactions.filter( item => {
+                    return ((item.type === 'expense') && (item.date.getMonth() == new Date().getMonth()))
+                }))
             },
             categories() {
                 if (!this.workspace.categories.length) {
@@ -162,7 +164,6 @@
                     }]
                 }
                 return this.workspace.transactions
-
             }
         },
         methods: {
