@@ -30,14 +30,14 @@
                                         <v-icon small color="#68993F">mdi-circle</v-icon>
                                         6,345$
                                     </v-card-title>
-                                    <v-card-subtitle class="pb-0 px-0">Incoming</v-card-subtitle>
+                                    <v-card-subtitle class="pb-0 px-0">Income</v-card-subtitle>
                                 </li>
                                 <li>
                                     <v-card-title class="pa-0 pb-4">
                                         <v-icon small color="#D96B55">mdi-circle</v-icon>
                                         3,123$
                                     </v-card-title>
-                                    <v-card-subtitle class="pb-0 px-0">Outgoing</v-card-subtitle>
+                                    <v-card-subtitle class="pb-0 px-0">Spent</v-card-subtitle>
                                 </li>
                             </ul>
                         </div>
@@ -134,13 +134,13 @@
             },
             totalIncome() {
                 return this.totalSum(this.workspace.transactions.filter( item => {
-                    return item.type == 'replenishment'
+                    return item.type === 'replenishment'
                 } ))
             },
             totalSpent() {
-                return this.totalSum(this.workspace.transactions.filter( item => {
+                return Math.abs(this.totalSum(this.workspace.transactions.filter( item => {
                     return item.type === 'expense'
-                } ))
+                } )))
             },
             spentThisMonth() {
                 return this.$store.getters.currentWorkspace.spentThisMonth
@@ -195,7 +195,7 @@
     }
 
     .card ul {
-         padding-left: 0px;
+         padding-left: 0;
          list-style: none;
     }
 

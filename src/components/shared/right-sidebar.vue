@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <span class="transaction-card-value">
-                        ${{item.value}}
+                        ${{Math.abs(item.value)}}
                     </span>
                 </div>
             </li>
